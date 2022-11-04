@@ -32,4 +32,17 @@ addStake(){
     this.ngOnInit(); 
 });
 }
+Openstk(istk:number){
+  this.dialog.open(AddstakeComponent,{data:istk}).afterClosed().subscribe(val=>{
+    this.ngOnInit();  });
+}
+delStk(istk:number){
+  this.dataString = localStorage.getItem('DATA');
+  this.dataObject = JSON.parse(this.dataString);
+  this.dataObject.stk.splice(istk,1);
+  this.dataString = JSON.stringify(this.dataObject);
+  localStorage.setItem('DATA',this.dataString);
+  this.ngOnInit();
+
+}
 }

@@ -21,17 +21,15 @@ export class AddstakeComponent implements OnInit {
     targetrel:['',Validators.required],
     opl:['',Validators.required],
     state:['',Validators.required]
-  })
-    // this.api.getTask().subscribe({
-    //   next:(res)=>{
-    //     this.descForm.controls['taskdesc'].setValue(res[this.service.tasknum].stk[this.editData].taskdesc);
-    //     this.descForm.controls['eldesc'].setValue(res[this.service.tasknum].stk[this.editData].eldesc);
-    //     this.descForm.controls['stkmail'].setValue(res[this.service.tasknum].stk[this.editData].stkmail);
-    //     this.descForm.controls['targetrel'].setValue(res[this.service.tasknum].stk[this.editData].targetrel);
-    //     this.descForm.controls['opl'].setValue(res[this.service.tasknum].stk[this.editData].opl);
-    //     this.descForm.controls['state'].setValue(res[this.service.tasknum].stk[this.editData].state);
-    //   }
-    // });
+   })
+    this.dataString = localStorage.getItem('DATA');
+    this.dataObject = JSON.parse(this.dataString);
+    this.stakeForm.controls['taskdesc'].setValue(this.dataObject.stk[this.editData].taskdesc);
+    this.stakeForm.controls['eldesc'].setValue(this.dataObject.stk[this.editData].eldesc);
+    this.stakeForm.controls['stkmail'].setValue(this.dataObject.stk[this.editData].stkmail);
+    this.stakeForm.controls['targetrel'].setValue(this.dataObject.stk[this.editData].targetrel);
+    this.stakeForm.controls['opl'].setValue(this.dataObject.stk[this.editData].opl);
+    this.stakeForm.controls['state'].setValue(this.dataObject.stk[this.editData].state);
   }
   addStake(){
     this.dataString = localStorage.getItem('DATA');
@@ -39,18 +37,17 @@ export class AddstakeComponent implements OnInit {
     if (this.dataObject.hasOwnProperty("stk") == false){
       this.dataObject["stk"] = [];
     }
-    // if(this.editData == null){
+    if(this.editData == null){
       this.dataObject["stk"].push(this.stakeForm.value);
-      console.log(this.editData)
-    // }
-    // else{
-    //   this.dataObject.stk[this.editData].taskdesc = this.stakeForm.value.taskdesc;
-    //   this.dataObject.stk[this.editData].eldesc = this.stakeForm.value.eldesc;
-    //   this.dataObject.stk[this.editData].stkmail = this.stakeForm.value.stkmail;
-    //   this.dataObject.stk[this.editData].targetrel = this.stakeForm.value.targetrel;
-    //   this.dataObject.stk[this.editData].opl = this.stakeForm.value.opl;
-    //   this.dataObject.stk[this.editData].state = this.stakeForm.value.state;
-    // }
+    }
+    else{
+      this.dataObject.stk[this.editData].taskdesc = this.stakeForm.value.taskdesc;
+      this.dataObject.stk[this.editData].eldesc = this.stakeForm.value.eldesc;
+      this.dataObject.stk[this.editData].stkmail = this.stakeForm.value.stkmail;
+      this.dataObject.stk[this.editData].targetrel = this.stakeForm.value.targetrel;
+      this.dataObject.stk[this.editData].opl = this.stakeForm.value.opl;
+      this.dataObject.stk[this.editData].state = this.stakeForm.value.state;
+    }
     this.dataString = JSON.stringify(this.dataObject);
     localStorage.setItem('DATA',this.dataString);
     this.ngOnInit();

@@ -18,13 +18,13 @@
   
   <ng-container  *ngFor ="let stake of dataObject.stk; let istk = index">
     <mat-card class="stkcard">
-      <mat-card-content ><p class ="desc">STK&nbsp;-&nbsp;{{(istk+1)}}</p><p>{{stake.taskdesc}}</p></mat-card-content>
+      <mat-card-content (click)="Openstk(istk)" ><p class ="desc">STK&nbsp;-&nbsp;{{(istk+1)}}</p><p>{{stake.taskdesc}}</p></mat-card-content>
       <mat-card-actions>
         
         <button mat-icon-button  ><mat-icon>add_circle</mat-icon>
         </button>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <button mat-icon-button  ><mat-icon>delete</mat-icon>
+        <button mat-icon-button (click)="delStk(istk)" ><mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
