@@ -1,0 +1,89 @@
+.stkcard{
+    margin-left: 7%;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px;   
+    width: 150px;
+    height: 65px;
+}
+.syscard{
+    margin-left: 24%;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px;     
+    width: 150px;
+    height: 65px;
+}
+.swcard{
+    margin-left: 42%;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px; 
+    width: 150px;
+    height: 65px;
+}
+
+.swtestcard{
+    margin-left: 65%; 
+    margin-top: -30px; 
+    margin-bottom: 40px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px; 
+    width: 150px;
+    height: 65px;
+    
+}
+.syststcard{
+    margin-left: 82%;
+    margin-top: -30px;
+    margin-bottom: 40px;
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px; 
+    width: 150px;
+    height: 65px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .titlestyle{
+    margin-top: 12px;
+    font-weight: lighter;
+  }
+
+  .mat-card-content {
+    font-size: 10px;
+    height: 50px;
+    width: 150px;
+    line-height: 12px;
+    overflow-wrap: break-word;
+    overflow-y: hidden;
+}
+.mat-card-actions{
+    margin-top: -30px;
+}
+.stkhr{
+    margin-left: 5%;
+    margin-right: 5%;
+    color: rgb(196, 189, 189);
+    height: 1px;
+}
+.syshr{
+    margin-left: 31%;
+    margin-right: 20%;
+    color: rgb(196, 189, 189);
+    height: auto;
+}
+.swhr{
+    margin-left: 49%;
+    margin-right: 37%;
+    color: rgb(196, 189, 189);
+    height: auto;
+}
+.desc{
+    color: gold;
+}

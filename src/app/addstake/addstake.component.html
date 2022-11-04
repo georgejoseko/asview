@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Stakeholder Requirement</h1>
+<div mat-dialog-content>
+<form [formGroup]="stakeForm">
+    <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Original Requirement</mat-label>
+        <textarea formControlName="taskdesc" matInput placeholder="Describe the Original Requirement"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Elicited Requirement</mat-label>
+        <textarea formControlName="eldesc" matInput placeholder="Describe the Elicited Requirement"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Open Point List</mat-label>
+        <textarea formControlName="opl" matInput placeholder="List of Open Points and status"></textarea>
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>StakeHolder</mat-label>
+        <input formControlName="stkmail" matInput placeholder="Email -id of Stakeholder">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Target Release</mat-label>
+        <input formControlName="targetrel" matInput placeholder="Pilot target release">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label> Requirement State </mat-label>  
+        <mat-select formControlName="state">  
+          <mat-option value = "option"> Started </mat-option>  
+          <mat-option value = "option"> Approved </mat-option>  
+        </mat-select> 
+      </mat-form-field>
+</form>
+</div>
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addStake()">SUBMIT</button>
+</div>
