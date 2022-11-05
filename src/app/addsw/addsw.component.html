@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Software Requirement</h1>
+<div mat-dialog-content>
+<form [formGroup]="swForm">
+    <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Software Requirement</mat-label>
+        <textarea formControlName="taskdesc" matInput placeholder="Describe the Software Requirement"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Interfaces</mat-label>
+        <textarea formControlName="inter" matInput placeholder="List interfaces and properties"></textarea>
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>SW Architecture Component</mat-label>
+        <input formControlName="comp" matInput placeholder="Component Name">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>StakeHolder</mat-label>
+        <input formControlName="stkmail" matInput placeholder="Email -id of Stakeholder">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Target Release SW component</mat-label>
+        <input formControlName="swcomp" matInput placeholder="SW component">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>SW Sub component</mat-label>
+        <input formControlName="swsubcomp" matInput placeholder="SW sub component">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Design Tag</mat-label>
+        <input formControlName="tag" matInput placeholder="Link to Design">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>URL</mat-label>
+        <input formControlName="url" matInput placeholder="Link to main tool">
+      </mat-form-field>
+</form>
+</div>
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addSw()">SUBMIT</button>
+</div>

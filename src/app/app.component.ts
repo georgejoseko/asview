@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { AddstakeComponent } from './addstake/addstake.component';
+import { TaskidService } from './taskid.service';
+import { AddsystemComponent } from './addsystem/addsystem.component';
+import { AddswComponent } from './addsw/addsw.component';
+import { AddsyststComponent } from './addsystst/addsystst.component';
+import { AddswtstComponent } from './addswtst/addswtst.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +19,7 @@ export class AppComponent {
   taskId:any;
   titleRq:any;
   taskExist:any;
-  constructor(private dialog:MatDialog){}
+  constructor(private dialog:MatDialog, private service:TaskidService){}
   ngOnInit(): void {
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
@@ -22,7 +27,7 @@ export class AppComponent {
     this.titleRq = this.dataObject.title;
     this.taskExist = (this.dataObject != null);
   }
-  addTask(){
+addTask(){
     this.dialog.open(AddtaskComponent,{}).afterClosed().subscribe(val=>{
       this.ngOnInit(); 
   });
@@ -44,5 +49,82 @@ delStk(istk:number){
   localStorage.setItem('DATA',this.dataString);
   this.ngOnInit();
 
+}
+addSys(istk:number){
+  this.service.stkid = istk;
+  this.dialog.open(AddsystemComponent,{}).afterClosed().subscribe(val=>{
+    this.ngOnInit(); 
+  });
+}
+Opensys(isys:number,istk:number){
+  this.dialog.open(AddsystemComponent,{data:{isys,istk}}).afterClosed().subscribe(val=>{
+    this.ngOnInit();  });
+}
+delSys(isys:number,istk:number){
+  this.dataString = localStorage.getItem('DATA');
+  this.dataObject = JSON.parse(this.dataString);
+  this.dataObject.stk[istk].system.splice(isys,1);
+  this.dataString = JSON.stringify(this.dataObject);
+  localStorage.setItem('DATA',this.dataString);
+  this.ngOnInit();
+}
+addSw(isys:number,istk:number){
+  this.service.stkid = istk;
+  this.service.sysid = isys;
+  this.dialog.open(AddswComponent,{}).afterClosed().subscribe(val=>{
+    this.ngOnInit(); 
+  });
+}
+Opensw(isw:number,isys:number,istk:number){
+  this.dialog.open(AddswComponent,{data:{isw,isys,istk}}).afterClosed().subscribe(val=>{
+    this.ngOnInit();  });
+}
+delSw(isw:number,isys:number,istk:number){
+  this.dataString = localStorage.getItem('DATA');
+  this.dataObject = JSON.parse(this.dataString);
+  this.dataObject.stk[istk].system[isys].software.splice(isw,1);
+  this.dataString = JSON.stringify(this.dataObject);
+  localStorage.setItem('DATA',this.dataString);
+  this.ngOnInit();
+}
+
+addSystst(isys:number,istk:number){
+  this.service.stkid = istk;
+  this.service.sysid = isys;
+  this.dialog.open(AddsyststComponent,{}).afterClosed().subscribe(val=>{
+    this.ngOnInit(); 
+  });
+}
+Opensystst(isystst:number,isys:number,istk:number){
+  this.dialog.open(AddswComponent,{data:{isystst,isys,istk}}).afterClosed().subscribe(val=>{
+    this.ngOnInit();  });
+}
+delSystst(isystst:number,isys:number,istk:number){
+  this.dataString = localStorage.getItem('DATA');
+  this.dataObject = JSON.parse(this.dataString);
+  this.dataObject.stk[istk].system[isys].systemtst.splice(isystst,1);
+  this.dataString = JSON.stringify(this.dataObject);
+  localStorage.setItem('DATA',this.dataString);
+  this.ngOnInit();
+}
+addSwtst(isys:number,istk:number,isw:number){
+  this.service.stkid = istk;
+  this.service.sysid = isys;
+  this.service.swid = isw;
+  this.dialog.open(AddswtstComponent,{}).afterClosed().subscribe(val=>{
+    this.ngOnInit(); 
+  });
+}
+Openswtst(iswtst:number,isw:number,isys:number,istk:number){
+  this.dialog.open(AddswComponent,{data:{iswtst,isys,istk}}).afterClosed().subscribe(val=>{
+    this.ngOnInit();  });
+}
+delSwtst(iswtst:number,isw:number,isys:number,istk:number){
+  this.dataString = localStorage.getItem('DATA');
+  this.dataObject = JSON.parse(this.dataString);
+  this.dataObject.stk[istk].system[isys].software[isw].softwaretst.splice(iswtst,1);
+  this.dataString = JSON.stringify(this.dataObject);
+  localStorage.setItem('DATA',this.dataString);
+  this.ngOnInit();
 }
 }

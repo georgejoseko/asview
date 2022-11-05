@@ -16,13 +16,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { AddstakeComponent } from './addstake/addstake.component';
+import { AddsystemComponent } from './addsystem/addsystem.component';
+import { AddswComponent } from './addsw/addsw.component';
+import { AddsyststComponent } from './addsystst/addsystst.component';
+import { AddswtstComponent } from './addswtst/addswtst.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddtaskComponent,
-    AddstakeComponent
+    AddstakeComponent,
+    AddsystemComponent,
+    AddswComponent,
+    AddsyststComponent,
+    AddswtstComponent
   ],
   imports: [
     BrowserModule,

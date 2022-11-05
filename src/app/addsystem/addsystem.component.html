@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>System Requirement</h1>
+<div mat-dialog-content>
+<form [formGroup]="systemForm">
+    <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>System Requirement</mat-label>
+        <textarea formControlName="taskdesc" matInput placeholder="Describe the System Requirement"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Impact Analysis</mat-label>
+        <textarea formControlName="risk" matInput placeholder="List Impacts & Risks to system"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Open Point List</mat-label>
+        <textarea formControlName="url" matInput placeholder="URL link for SysReq"></textarea>
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Target Release</mat-label>
+        <input formControlName="comp" matInput placeholder="System Architecture Component">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>StakeHolder</mat-label>
+        <input formControlName="stkmail" matInput placeholder="Email -id of Stakeholder">
+      </mat-form-field>
+</form>
+</div>
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addSys()">SUBMIT</button>
+</div>

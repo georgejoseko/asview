@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>System Test</h1>
+<div mat-dialog-content>
+<form [formGroup]="syststForm">
+    <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Test Description</mat-label>
+        <textarea formControlName="taskdesc" matInput placeholder="Describe Testcase"></textarea>
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Tester</mat-label>
+        <input formControlName="stkmail" matInput placeholder="Email -id of Tester">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label>Test Container</mat-label>
+        <input formControlName="testcnt" matInput placeholder="Test Container Link">
+      </mat-form-field>
+      <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label> Environment </mat-label>  
+        <mat-select formControlName="env">  
+          <mat-option value = "option"> SIL </mat-option>  
+          <mat-option value = "option"> HIL </mat-option>  
+        </mat-select> 
+      </mat-form-field>
+        <mat-form-field class="shrtstyle" appearance="outline">
+        <mat-label> State </mat-label>  
+        <mat-select formControlName="state">  
+          <mat-option value = "option"> Spec-done </mat-option>  
+          <mat-option value = "option"> Passed </mat-option>  
+        </mat-select> 
+      </mat-form-field>
+</form>
+</div>
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addSystst()">SUBMIT</button>
+</div>

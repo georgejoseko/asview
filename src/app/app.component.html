@@ -15,18 +15,64 @@
     <button mat-icon-button class="addTask" (click)="addStake()" >
       <mat-icon>add_circle</mat-icon>
     </button>
-  
   <ng-container  *ngFor ="let stake of dataObject.stk; let istk = index">
     <mat-card class="stkcard">
       <mat-card-content (click)="Openstk(istk)" ><p class ="desc">STK&nbsp;-&nbsp;{{(istk+1)}}</p><p>{{stake.taskdesc}}</p></mat-card-content>
       <mat-card-actions>
-        
-        <button mat-icon-button  ><mat-icon>add_circle</mat-icon>
+        <button mat-icon-button (click)="addSys(istk)" ><mat-icon>add_circle</mat-icon>
         </button>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <button mat-icon-button (click)="delStk(istk)" ><mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
+    <ng-container *ngFor ="let sys of stake.system; let isys = index">
+      <mat-card class="syscard">
+        <mat-card-content (click)="Opensys(isys,istk)"><p class ="desc">SYS&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}</p><p>{{sys.taskdesc}}</p></mat-card-content>
+        <mat-card-actions>
+          <button  mat-icon-button (click)="addSw(isys,istk)" ><mat-icon>add_circle</mat-icon>
+          </button>
+          <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+          <button mat-icon-button (click)="delSys(isys,istk)" ><mat-icon>delete</mat-icon>
+          </button>
+          <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <button mat-icon-button (click)="addSystst(isys,istk)" ><mat-icon>call_merge</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <hr class="syshr">
+    <ng-container *ngFor= "let systst of sys.systemtst; let isystst = index">
+        <mat-card class="syststcard">
+          <mat-card-content (click)="Opensystst(isystst,isys,istk)"><p class ="desc">SYSTST&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isystst+1)}}</p><p>{{systst.taskdesc}}</p></mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-icon-button (click)="delSystst(isystst,isys,istk)" ><mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>  
+    </ng-container>
+    <ng-container *ngFor ="let sw of sys.software; let isw = index">
+        <mat-card class="swcard">
+          <mat-card-content (click)="Opensw(isw,isys,istk)"><p class ="desc">SW&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isw+1)}}</p><p>{{sw.taskdesc}}</p></mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button (click)="addSwtst(isys,istk,isw)" ><mat-icon>call_merge</mat-icon>
+            </button>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-icon-button (click)="delSw(isw,isys,istk)" ><mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        <hr class="swhr">
+      <ng-container *ngFor ="let swtst of sw.softwaretst; let iswtst =index">
+          <mat-card class="swtestcard">
+            <mat-card-content (click)="Openswtst(iswtst,isw,isys,istk)"><p class ="desc">SWTST&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isw+1)}}.{{(iswtst+1)}}</p><p>{{swtst.taskdesc}}</p></mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-icon-button (click)="delSwtst(iswtst,isw,isys,istk)" ><mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <hr class="stkhr">
   </ng-container>
 </ng-container>
