@@ -12,13 +12,7 @@
     <button mat-icon-button  class="addTask" (click)="fileInput.click()">
       <mat-icon>upload</mat-icon>
       <input #fileInput type="file" (change)="browserUpload($event)" style="display:none;" />
-    </button>
-    
-    <!-- <button (click)="browserUpload.click()"  class="addTask">
-      <mat-icon>upload</mat-icon>
-      <input (change)="browserUpload($event)" class="in" type="file" id='files' name='files[]' style="display:none;visibility: none;"/>
-    </button> -->
-        
+    </button> 
   </mat-toolbar>
   <pre >          StakeHolder Requirements   |  System Requirements    |     Software Requirements       |          Software Test        |       System Test</pre>
   <ng-container *ngIf = "taskExist">
