@@ -5,14 +5,24 @@
   <span>&nbsp;&nbsp;&nbsp;</span>
     <span style="font-weight:bold">TASK.|WORKSHEET.</span>
     <span class="example-spacer"></span>
-    <p class="titlestyle">{{taskId}}&nbsp;:&nbsp;:&nbsp;{{titleRq}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-    <button mat-icon-button  class="addTask">
+    <p class="titlestyle" (click)="addTask()">{{taskId}}&nbsp;:&nbsp;:&nbsp;{{titleRq}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <button mat-icon-button  class="addTask" (click)="browserSaveAs()">
       <mat-icon>save</mat-icon>
     </button>
+    <button mat-icon-button  class="addTask" (click)="fileInput.click()">
+      <mat-icon>upload</mat-icon>
+      <input #fileInput type="file" (change)="browserUpload($event)" style="display:none;" />
+    </button>
+    
+    <!-- <button (click)="browserUpload.click()"  class="addTask">
+      <mat-icon>upload</mat-icon>
+      <input (change)="browserUpload($event)" class="in" type="file" id='files' name='files[]' style="display:none;visibility: none;"/>
+    </button> -->
+        
   </mat-toolbar>
   <pre >          StakeHolder Requirements   |  System Requirements    |     Software Requirements       |          Software Test        |       System Test</pre>
   <ng-container *ngIf = "taskExist">
-    <button mat-icon-button class="addTask" (click)="addStake()" >
+    <button mat-icon-button class="addStk" (click)="addStake()" >
       <mat-icon>add_circle</mat-icon>
     </button>
   <ng-container  *ngFor ="let stake of dataObject.stk; let istk = index">

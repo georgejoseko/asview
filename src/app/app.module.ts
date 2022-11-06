@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FileSaverModule } from 'ngx-filesaver';
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
@@ -44,7 +45,8 @@ import { AddswtstComponent } from './addswtst/addswtst.component';
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FileSaverModule
   ],
   providers: [],
   bootstrap: [AppComponent]

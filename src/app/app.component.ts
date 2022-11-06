@@ -7,6 +7,7 @@ import { AddsystemComponent } from './addsystem/addsystem.component';
 import { AddswComponent } from './addsw/addsw.component';
 import { AddsyststComponent } from './addsystst/addsystst.component';
 import { AddswtstComponent } from './addswtst/addswtst.component';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +20,40 @@ export class AppComponent {
   taskId:any;
   titleRq:any;
   taskExist:any;
-  constructor(private dialog:MatDialog, private service:TaskidService){}
+  constructor(private dialog:MatDialog, private service:TaskidService, private fileSaverService:FileSaverService){}
   ngOnInit(): void {
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
     this.taskId = this.dataObject.id;
     this.titleRq = this.dataObject.title;
     this.taskExist = (this.dataObject != null);
+  }
+  browserSaveAs(){
+    this.dataString = localStorage.getItem('DATA');
+    this.dataObject = JSON.parse(this.dataString);
+    const blob = new Blob([JSON.stringify(this.dataObject, null, 2)], {
+      type: "application/json",
+    });
+    this.fileSaverService.save(blob,'data.json');
+    
+  }
+  browserUpload(event:any){
+    var file = event.srcElement.files[0];
+    
+    if (file) {
+      var dataString:any
+        var reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = function (evt) {       
+          dataString = evt.target?.result;
+           localStorage.setItem('DATA',dataString); 
+        }
+        reader.onerror = function (evt) {
+            console.log('error reading file');
+        }
+    }
+    location.reload();
+    console.log("inside")
   }
 addTask(){
     this.dialog.open(AddtaskComponent,{}).afterClosed().subscribe(val=>{
