@@ -1,3 +1,4 @@
+<div class="stick">
 <mat-toolbar>
   <button mat-icon-button class="addTask" (click)="addTask()" >
     <mat-icon>add_circle</mat-icon>
@@ -14,7 +15,16 @@
       <input #fileInput type="file" (change)="browserUpload($event)" style="display:none;" />
     </button> 
   </mat-toolbar>
-  <pre >          StakeHolder Requirements   |  System Requirements    |     Software Requirements       |          Software Test        |       System Test</pre>
+</div>
+  <br> <br> <br> <br>
+  <div class="head2" style="margin-left: 7%;"><p >StakeHolder Requirements</p></div>
+  <div class="head2" style="margin-left: -2%;"><p>System Requirements</p></div>
+  <div class="head2" style="margin-left: -2%;"><p>Software Requirements</p></div>
+  <div class="head2" style="margin-left: 6%;"><p>Software tests</p></div>
+  <div ><p>System Tests</p></div>
+
+
+<div class="cont">
   <ng-container *ngIf = "taskExist">
     <button mat-icon-button class="addStk" (click)="addStake()" >
       <mat-icon>add_circle</mat-icon>
@@ -40,7 +50,7 @@
           <button mat-icon-button (click)="delSys(isys,istk)" ><mat-icon>delete</mat-icon>
           </button>
           <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          <button mat-icon-button (click)="addSystst(isys,istk)" ><mat-icon>call_merge</mat-icon>
+          <button mat-icon-button (click)="addSystst(isys,istk)" ><mat-icon>currency_lira</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
@@ -58,7 +68,7 @@
         <mat-card class="swcard">
           <mat-card-content (click)="Opensw(isw,isys,istk)"><p class ="desc">SW&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isw+1)}}</p><p>{{sw.taskdesc}}</p></mat-card-content>
           <mat-card-actions>
-            <button mat-icon-button (click)="addSwtst(isys,istk,isw)" ><mat-icon>call_merge</mat-icon>
+            <button mat-icon-button (click)="addSwtst(isys,istk,isw)" ><mat-icon>currency_lira</mat-icon>
             </button>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <button mat-icon-button (click)="delSw(isw,isys,istk)" ><mat-icon>delete</mat-icon>
@@ -80,3 +90,4 @@
   <hr class="stkhr">
   </ng-container>
 </ng-container>
+</div>

@@ -124,7 +124,7 @@ addSystst(isys:number,istk:number){
   });
 }
 Opensystst(isystst:number,isys:number,istk:number){
-  this.dialog.open(AddswComponent,{data:{isystst,isys,istk}}).afterClosed().subscribe(val=>{
+  this.dialog.open(AddsyststComponent,{data:{isystst,isys,istk}}).afterClosed().subscribe(val=>{
     this.ngOnInit();  });
 }
 delSystst(isystst:number,isys:number,istk:number){
@@ -144,7 +144,7 @@ addSwtst(isys:number,istk:number,isw:number){
   });
 }
 Openswtst(iswtst:number,isw:number,isys:number,istk:number){
-  this.dialog.open(AddswComponent,{data:{iswtst,isys,istk}}).afterClosed().subscribe(val=>{
+  this.dialog.open(AddswtstComponent,{data:{iswtst,isys,isw,istk}}).afterClosed().subscribe(val=>{
     this.ngOnInit();  });
 }
 delSwtst(iswtst:number,isw:number,isys:number,istk:number){
