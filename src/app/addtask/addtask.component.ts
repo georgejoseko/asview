@@ -22,16 +22,9 @@ export class AddtaskComponent implements OnInit {
   addTask(){
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
-    if(this.dataString == null){
       this.dataObject = {};
       this.dataObject["id"] = this.taskForm.value.taskid;
       this.dataObject["title"] = this.taskForm.value.title;
-    }
-    else{
-      this.dataObject["id"] = this.taskForm.value.taskid;
-      this.dataObject["title"] = this.taskForm.value.title;
-      console.log(this.dataObject);
-    }
     this.dataString = JSON.stringify(this.dataObject);
     localStorage.setItem('DATA',this.dataString);
     this.ngOnInit();
