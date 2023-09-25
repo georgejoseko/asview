@@ -33,8 +33,12 @@ export class AppComponent {
   ngOnInit(): void {
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
-    this.taskId = this.dataObject.id;
-    this.titleRq = this.dataObject.title;
+
+    if (this.dataObject) {
+      this.taskId = this.dataObject.id;
+      this.titleRq = this.dataObject.title;
+    }
+    
     this.taskExist = this.dataObject != null;
   }
   browserSaveAs() {
