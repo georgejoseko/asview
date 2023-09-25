@@ -8,7 +8,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
-import{MatCardModule} from '@angular/material/card';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -21,6 +22,7 @@ import { AddsystemComponent } from './addsystem/addsystem.component';
 import { AddswComponent } from './addsw/addsw.component';
 import { AddsyststComponent } from './addsystst/addsystst.component';
 import { AddswtstComponent } from './addswtst/addswtst.component';
+import { ConfirmationComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { AddswtstComponent } from './addswtst/addswtst.component';
     AddsystemComponent,
     AddswComponent,
     AddsyststComponent,
-    AddswtstComponent
+    AddswtstComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { AddswtstComponent } from './addswtst/addswtst.component';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
+    MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,
     FileSaverModule

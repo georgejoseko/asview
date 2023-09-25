@@ -1,35 +1,54 @@
-<h1 mat-dialog-title>Stakeholder Requirement</h1>
+<div class="header">
+  <h1 mat-dialog-title>Stakeholder Requirement</h1>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
 <div mat-dialog-content>
-<form [formGroup]="stakeForm">
+  <form [formGroup]="stakeForm">
     <mat-form-field class="normstyle" appearance="outline">
-        <mat-label>Original Requirement</mat-label>
-        <textarea formControlName="taskdesc" matInput placeholder="Describe the Original Requirement"></textarea>
-      </mat-form-field>
-      <mat-form-field class="normstyle" appearance="outline">
+      <mat-label>Original Requirement</mat-label>
+      <textarea formControlName="taskdesc" matInput placeholder="Describe the Original Requirement"></textarea>
+    </mat-form-field>
+    <h2>
+      Additional Requirements
+      <button mat-icon-button class="addTask" (click)="addRequirement()">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </h2>
+    <div class="requirements">
+      <div *ngFor="let requirement of requirements; let index=index" class="requirement">
+        <span>{{index+1}}.&nbsp;</span>
+        <mat-form-field class="normstyle" appearance="outline">
+          <textarea [formControl]="requirement" matInput placeholder="Describe the Elicited Requirement"></textarea>
+        </mat-form-field>
+        <button mat-icon-button (click)="delReq(index)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </div>
+    <!-- <mat-form-field class="normstyle" appearance="outline">
         <mat-label>Elicited Requirement</mat-label>
         <textarea formControlName="eldesc" matInput placeholder="Describe the Elicited Requirement"></textarea>
-      </mat-form-field>
-      <mat-form-field class="normstyle" appearance="outline">
+      </mat-form-field> -->
+    <!-- <mat-form-field class="normstyle" appearance="outline">
         <mat-label>Open Point List</mat-label>
         <textarea formControlName="opl" matInput placeholder="List of Open Points and status"></textarea>
-      </mat-form-field>
-      <mat-form-field class="shrtstyle" appearance="outline">
-        <mat-label>StakeHolder</mat-label>
-        <input formControlName="stkmail" matInput placeholder="Email -id of Stakeholder">
-      </mat-form-field>
-      <mat-form-field class="shrtstyle" appearance="outline">
-        <mat-label>Target Release</mat-label>
-        <input formControlName="targetrel" matInput placeholder="Pilot target release">
-      </mat-form-field>
-      <mat-form-field class="shrtstyle" appearance="outline">
-        <mat-label> Requirement State </mat-label>  
-        <mat-select formControlName="state">  
-          <mat-option value = "Started"> Started </mat-option>  
-          <mat-option value = "Approved"> Approved </mat-option>  
-        </mat-select> 
-      </mat-form-field>
-</form>
+      </mat-form-field> -->
+    <mat-form-field class="shrtstyle" appearance="outline">
+      <mat-label>StakeHolder</mat-label>
+      <input formControlName="stkmail" matInput placeholder="Email -id of Stakeholder">
+    </mat-form-field>
+    <mat-form-field class="shrtstyle" appearance="outline">
+      <mat-label>Target Release</mat-label>
+      <input formControlName="targetrel" matInput placeholder="Pilot target release">
+    </mat-form-field>
+    <mat-form-field class="shrtstyle" appearance="outline">
+      <mat-label> Requirement State </mat-label>
+      <mat-select formControlName="state">
+        <mat-option value="Started"> Started </mat-option>
+        <mat-option value="Approved"> Approved </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-action>
-    <button mat-raised-button color="primary" mat-dialog-close (click)="addStake()">SUBMIT</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="addStake()"
+    [disabled]="stakeForm.invalid">SUBMIT</button>
 </div>

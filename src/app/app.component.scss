@@ -6,6 +6,7 @@
     padding-right: 8px;   
     width: 150px;
     height: 65px;
+    position: relative;
 }
 .syscard{
     margin-left: 24%;
@@ -15,6 +16,7 @@
     padding-right: 8px;     
     width: 150px;
     height: 65px;
+    position: relative;
 }
 .swcard{
     margin-left: 42%;
@@ -104,4 +106,44 @@
 }
 .cont{
     overflow: hidden;
+}
+
+:host{
+    .expation-button{
+        position: absolute;
+        bottom: -36px;
+        left: 0px;
+        color: black;
+    }
+
+    .inverted{
+        transform: rotate(180deg);
+    }
+
+    ::ng-deep .mat-expansion-panel{
+        background: #fff !important;
+        box-shadow: unset !important;
+        margin-top: 60px;
+        overflow: visible;
+    }
+
+    .footer{
+        padding: 8px 0px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background: rgba(2, 2, 2, 0.8);
+
+        .action-button{
+            background: #fff;
+            color: #000;
+            border-radius: 20px;
+            width: 160px;
+        }
+    }
+
+    .app-content {
+        overflow: auto;
+        height: calc(100vh - 52px);
+    }
 }

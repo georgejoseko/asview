@@ -1,4 +1,7 @@
-<h1 mat-dialog-title>Add Task</h1>
+<div class="header">
+    <h1 mat-dialog-title>Add Task</h1>
+    <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
 <div mat-dialog-content>
 <form [formGroup]="taskForm">
     <mat-form-field appearance="outline">
