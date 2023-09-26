@@ -24,6 +24,7 @@ export class AppComponent {
   taskExist: any;
   stkcardExpanded: boolean = true;
   syscardExpanded: boolean = true;
+  syststcardExpanded: boolean = true;
   swrcardExpanded: boolean = true;
   constructor(
     private dialog: MatDialog,
@@ -33,13 +34,9 @@ export class AppComponent {
   ngOnInit(): void {
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
-
-    if (this.dataObject) {
-      this.taskId = this.dataObject.id;
-      this.titleRq = this.dataObject.title;
-    }
-    
-    this.taskExist = this.dataObject != null;
+    this.taskId = this.dataObject.id;
+    this.titleRq = this.dataObject.title;
+    this.taskExist = !!this.dataObject;
   }
   browserSaveAs() {
     this.dataString = localStorage.getItem('DATA');
@@ -234,5 +231,17 @@ export class AppComponent {
         })
         .afterClosed()
     );
+  }
+
+  editTask() {
+    this.dialog
+      .open(AddtaskComponent, {
+        disableClose: true,
+        data: { isEdit: true },
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        this.ngOnInit();
+      });
   }
 }

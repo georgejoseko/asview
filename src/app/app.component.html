@@ -6,7 +6,7 @@
     <span>&nbsp;&nbsp;&nbsp;</span>
     <span style="font-weight:bold">TASK.|WORKSHEET.</span>
     <span class="example-spacer"></span>
-    <p class="titlestyle" (click)="addTask()">
+    <p class="titlestyle" (click)="editTask()">
       {{taskId}}&nbsp;:&nbsp;:&nbsp;{{titleRq}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     <button mat-icon-button class="addTask" (click)="browserSaveAs()">
       <mat-icon>save</mat-icon>
@@ -16,9 +16,7 @@
       <input #fileInput type="file" (change)="browserUpload($event)" style="display:none;" />
     </button>
   </mat-toolbar>
-</div>
-<div class="app-content">
-  <br> <br> <br> <br>
+  <br>
   <div class="head2" style="margin-left: 7%;">
     <p>StakeHolder Requirements</p>
   </div>
@@ -34,7 +32,9 @@
   <div>
     <p>System Tests</p>
   </div>
-
+</div>
+<div class="app-content">
+  <br><br><br><br><br>
   <div class="cont">
     <ng-container *ngIf="taskExist">
       <button mat-icon-button class="addStk" (click)="addStake()">
@@ -53,7 +53,8 @@
             <button mat-icon-button (click)="delStk(istk)"><mat-icon>delete</mat-icon>
             </button>
           </mat-card-actions>
-          <button *ngIf="stake.system?.length > 0" class="expation-button" [ngClass]="{'inverted': stkcardExpanded}" mat-icon-button
+          <button *ngIf="stake.system?.length > 0" class="expation-button" [ngClass]="{'inverted': stkcardExpanded}"
+            mat-icon-button
             (click)="stkcardExpanded = !stkcardExpanded"><mat-icon>expand_circle_down</mat-icon></button>
         </mat-card>
         <mat-expansion-panel [expanded]="stkcardExpanded">
@@ -73,23 +74,29 @@
                 <button mat-icon-button (click)="addSystst(isys,istk)"><mat-icon>currency_lira</mat-icon>
                 </button>
               </mat-card-actions>
-              <button *ngIf="sys.systemtst?.length > 0 || sys.software?.length > 0" class="expation-button" [ngClass]="{'inverted': syscardExpanded}" mat-icon-button
+              <button *ngIf="sys.systemtst?.length > 0 || sys.software?.length > 0" class="expation-button"
+                [ngClass]="{'inverted': syscardExpanded}" mat-icon-button
                 (click)="syscardExpanded = !syscardExpanded"><mat-icon>expand_circle_down</mat-icon></button>
+              <button *ngIf="syscardExpanded && sys.systemtst?.length > 0" class="expation-button end"
+                [ngClass]="{'inverted': syststcardExpanded}" mat-icon-button
+                (click)="syststcardExpanded = !syststcardExpanded"><mat-icon>expand_circle_down</mat-icon></button>
             </mat-card>
             <mat-expansion-panel [expanded]="syscardExpanded">
-              <hr class="syshr">
-              <ng-container *ngFor="let systst of sys.systemtst; let isystst = index">
-                <mat-card class="syststcard">
-                  <mat-card-content (click)="Opensystst(isystst,isys,istk)">
-                    <p class="desc">SYSTST&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isystst+1)}}</p>
-                    <p>{{systst.taskdesc}}</p>
-                  </mat-card-content>
-                  <mat-card-actions align="end">
-                    <button mat-icon-button (click)="delSystst(isystst,isys,istk)"><mat-icon>delete</mat-icon>
-                    </button>
-                  </mat-card-actions>
-                </mat-card>
-              </ng-container>
+              <hr *ngIf="sys.systemtst?.length > 0" class="syshr">
+              <mat-expansion-panel [expanded]="syststcardExpanded">
+                <ng-container *ngFor="let systst of sys.systemtst; let isystst = index">
+                  <mat-card class="syststcard">
+                    <mat-card-content (click)="Opensystst(isystst,isys,istk)">
+                      <p class="desc">SYSTST&nbsp;-&nbsp;{{(istk+1)}}.{{(isys+1)}}.{{(isystst+1)}}</p>
+                      <p>{{systst.taskdesc}}</p>
+                    </mat-card-content>
+                    <mat-card-actions align="end">
+                      <button mat-icon-button (click)="delSystst(isystst,isys,istk)"><mat-icon>delete</mat-icon>
+                      </button>
+                    </mat-card-actions>
+                  </mat-card>
+                </ng-container>
+              </mat-expansion-panel>
               <ng-container *ngFor="let sw of sys.software; let isw = index">
                 <mat-card class="swcard">
                   <mat-card-content (click)="Opensw(isw,isys,istk)">
@@ -103,7 +110,8 @@
                     <button mat-icon-button (click)="delSw(isw,isys,istk)"><mat-icon>delete</mat-icon>
                     </button>
                   </mat-card-actions>
-                  <button *ngIf="sw.softwaretst?.length > 0" class="expation-button" [ngClass]="{'inverted': swrcardExpanded}" mat-icon-button
+                  <button *ngIf="sw.softwaretst?.length > 0" class="expation-button end"
+                    [ngClass]="{'inverted': swrcardExpanded}" mat-icon-button
                     (click)="swrcardExpanded = !swrcardExpanded"><mat-icon>expand_circle_down</mat-icon></button>
                 </mat-card>
                 <mat-expansion-panel [expanded]="swrcardExpanded">
@@ -125,6 +133,7 @@
             </mat-expansion-panel>
           </ng-container>
         </mat-expansion-panel>
+        <br>
         <hr class="stkhr">
       </ng-container>
     </ng-container>

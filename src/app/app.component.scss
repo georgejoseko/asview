@@ -37,7 +37,6 @@
     padding-right: 8px; 
     width: 150px;
     height: 65px;
-    
 }
 .syststcard{
     margin-left: 85%;
@@ -111,9 +110,16 @@
 :host{
     .expation-button{
         position: absolute;
-        bottom: -36px;
+        bottom: -42px;
         left: 0px;
         color: black;
+        background-color: #fff;
+        z-index: 1;
+
+        &.end{
+            left: unset;
+            right: 0;
+        }
     }
 
     .inverted{
@@ -123,7 +129,7 @@
     ::ng-deep .mat-expansion-panel{
         background: #fff !important;
         box-shadow: unset !important;
-        margin-top: 60px;
+        margin-top: 12px;
         overflow: visible;
     }
 

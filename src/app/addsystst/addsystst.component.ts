@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TaskidService } from '../taskid.service';
 import { ConfirmationComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -31,28 +35,30 @@ export class AddsyststComponent implements OnInit {
       env: [''],
       state: [''],
     });
-    this.dataString = localStorage.getItem('DATA');
-    this.dataObject = JSON.parse(this.dataString);
-    this.syststForm.controls['taskdesc'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .systemtst[this.editData.isystst].taskdesc
-    );
-    this.syststForm.controls['stkmail'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .systemtst[this.editData.isystst].stkmail
-    );
-    this.syststForm.controls['swcomp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .systemtst[this.editData.isystst].swcomp
-    );
-    this.syststForm.controls['env'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .systemtst[this.editData.isystst].env
-    );
-    this.syststForm.controls['state'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .systemtst[this.editData.isystst].state
-    );
+    if (!!this.editData || this.editData === 0) {
+      this.dataString = localStorage.getItem('DATA');
+      this.dataObject = JSON.parse(this.dataString);
+      this.syststForm.controls['taskdesc'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .systemtst[this.editData.isystst].taskdesc
+      );
+      this.syststForm.controls['stkmail'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .systemtst[this.editData.isystst].stkmail
+      );
+      this.syststForm.controls['swcomp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .systemtst[this.editData.isystst].swcomp
+      );
+      this.syststForm.controls['env'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .systemtst[this.editData.isystst].env
+      );
+      this.syststForm.controls['state'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .systemtst[this.editData.isystst].state
+      );
+    }
   }
   addSystst() {
     this.dataString = localStorage.getItem('DATA');

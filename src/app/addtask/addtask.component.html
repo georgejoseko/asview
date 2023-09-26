@@ -1,21 +1,22 @@
 <div class="header">
-    <h1 mat-dialog-title>Add Task</h1>
-    <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
-  </div>
+  <h1 mat-dialog-title>{{isEdit?'Edit':'Add'}} Task</h1>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
 <div mat-dialog-content>
-<form [formGroup]="taskForm">
+  <form [formGroup]="taskForm">
     <mat-form-field appearance="outline">
-        <mat-label>Task ID</mat-label>
-        <input formControlName="taskid" matInput placeholder="Task ID">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-          <mat-label>Title</mat-label>
-          <input formControlName="title" matInput placeholder="Title">
-        </mat-form-field>
-</form>
+      <mat-label>Task ID</mat-label>
+      <input formControlName="taskid" matInput placeholder="Task ID">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput placeholder="Title">
+    </mat-form-field>
+  </form>
 
 
 </div>
 <div mat-dialog-action>
-    <button mat-raised-button color="primary" mat-dialog-close (click)="addTask()">SUBMIT</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="isEdit?editTask():addTask()"
+    [disabled]="taskForm.invalid">SUBMIT</button>
 </div>

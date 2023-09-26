@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TaskidService } from '../taskid.service';
 import { ConfirmationComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -30,24 +34,27 @@ export class AddsystemComponent implements OnInit {
       comp: [''],
       stkmail: [''],
     });
-    this.dataString = localStorage.getItem('DATA');
-    this.dataObject = JSON.parse(this.dataString);
-    this.systemForm.controls['taskdesc'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .taskdesc
-    );
-    this.systemForm.controls['risk'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys].risk
-    );
-    this.systemForm.controls['url'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys].url
-    );
-    this.systemForm.controls['comp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys].comp
-    );
-    this.systemForm.controls['stkmail'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys].stkmail
-    );
+    if (!!this.editData || this.editData === 0) {
+      this.dataString = localStorage.getItem('DATA');
+      this.dataObject = JSON.parse(this.dataString);
+      this.systemForm.controls['taskdesc'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .taskdesc
+      );
+      this.systemForm.controls['risk'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys].risk
+      );
+      this.systemForm.controls['url'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys].url
+      );
+      this.systemForm.controls['comp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys].comp
+      );
+      this.systemForm.controls['stkmail'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .stkmail
+      );
+    }
   }
   addSys() {
     this.dataString = localStorage.getItem('DATA');

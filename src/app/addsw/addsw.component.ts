@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TaskidService } from '../taskid.service';
 import { ConfirmationComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddstakeComponent } from '../addstake/addstake.component';
@@ -35,40 +39,42 @@ export class AddswComponent implements OnInit {
       tag: [''],
       url: [''],
     });
-    this.dataString = localStorage.getItem('DATA');
-    this.dataObject = JSON.parse(this.dataString);
-    this.swForm.controls['taskdesc'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].taskdesc
-    );
-    this.swForm.controls['inter'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].inter
-    );
-    this.swForm.controls['comp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].comp
-    );
-    this.swForm.controls['stkmail'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].stkmail
-    );
-    this.swForm.controls['swcomp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].swcomp
-    );
-    this.swForm.controls['swsubcomp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].swsubcomp
-    );
-    this.swForm.controls['tag'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].tag
-    );
-    this.swForm.controls['url'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].url
-    );
+    if (!!this.editData || this.editData === 0) {
+      this.dataString = localStorage.getItem('DATA');
+      this.dataObject = JSON.parse(this.dataString);
+      this.swForm.controls['taskdesc'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].taskdesc
+      );
+      this.swForm.controls['inter'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].inter
+      );
+      this.swForm.controls['comp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].comp
+      );
+      this.swForm.controls['stkmail'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].stkmail
+      );
+      this.swForm.controls['swcomp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].swcomp
+      );
+      this.swForm.controls['swsubcomp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].swsubcomp
+      );
+      this.swForm.controls['tag'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].tag
+      );
+      this.swForm.controls['url'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].url
+      );
+    }
   }
   addSw() {
     this.dataString = localStorage.getItem('DATA');

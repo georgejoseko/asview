@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TaskidService } from '../taskid.service';
 import { ConfirmationComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -32,28 +36,31 @@ export class AddswtstComponent implements OnInit {
       env: [''],
       state: [''],
     });
-    this.dataString = localStorage.getItem('DATA');
-    this.dataObject = JSON.parse(this.dataString);
-    this.swtstForm.controls['taskdesc'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].softwaretst[this.editData.iswtst].taskdesc
-    );
-    this.swtstForm.controls['stkmail'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].softwaretst[this.editData.iswtst].stkmail
-    );
-    this.swtstForm.controls['swcomp'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].softwaretst[this.editData.iswtst].swcomp
-    );
-    this.swtstForm.controls['env'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].softwaretst[this.editData.iswtst].env
-    );
-    this.swtstForm.controls['state'].setValue(
-      this.dataObject.stk[this.editData.istk].system[this.editData.isys]
-        .software[this.editData.isw].softwaretst[this.editData.iswtst].state
-    );
+    if (!!this.editData || this.editData === 0) {
+      this.dataString = localStorage.getItem('DATA');
+      this.dataObject = JSON.parse(this.dataString);
+      this.swtstForm.controls['taskdesc'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].softwaretst[this.editData.iswtst]
+          .taskdesc
+      );
+      this.swtstForm.controls['stkmail'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].softwaretst[this.editData.iswtst].stkmail
+      );
+      this.swtstForm.controls['swcomp'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].softwaretst[this.editData.iswtst].swcomp
+      );
+      this.swtstForm.controls['env'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].softwaretst[this.editData.iswtst].env
+      );
+      this.swtstForm.controls['state'].setValue(
+        this.dataObject.stk[this.editData.istk].system[this.editData.isys]
+          .software[this.editData.isw].softwaretst[this.editData.iswtst].state
+      );
+    }
   }
   addSwtst() {
     this.dataString = localStorage.getItem('DATA');
