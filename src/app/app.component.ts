@@ -36,6 +36,7 @@ export class AppComponent {
     this.dataObject = JSON.parse(this.dataString);
     this.taskId = this.dataObject.id;
     this.titleRq = this.dataObject.title;
+    console.log(this.dataObject)
     this.taskExist = !!this.dataObject;
   }
   browserSaveAs() {

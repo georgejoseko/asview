@@ -82,8 +82,8 @@
                 (click)="syststcardExpanded = !syststcardExpanded"><mat-icon>expand_circle_down</mat-icon></button>
             </mat-card>
             <mat-expansion-panel [expanded]="syscardExpanded">
-              <hr *ngIf="sys.systemtst?.length > 0" class="syshr">
               <mat-expansion-panel [expanded]="syststcardExpanded">
+                <hr *ngIf="sys.systemtst?.length > 0" class="syshr">
                 <ng-container *ngFor="let systst of sys.systemtst; let isystst = index">
                   <mat-card class="syststcard">
                     <mat-card-content (click)="Opensystst(isystst,isys,istk)">
