@@ -1,0 +1,44 @@
+:host {
+    .container {
+        width: 60vw;
+        height: 60vh;
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            margin-block: 12%;
+
+            h3 {
+                margin: 0%;
+            }
+
+            mat-form-field {
+                width: 60%;
+
+                ::ng-deep {
+
+                    .mat-form-field-wrapper {
+                        padding: 0%;
+                    }
+                    .mat-form-field-infix {
+                        border-width: 4px;
+                    }
+                }
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+
+            h1 {
+                margin: 0;
+            }
+        }
+    }
+}

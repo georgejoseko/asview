@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="header">
+    <h1 mat-dialog-title>Analysis</h1>
+    <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <div mat-dialog-content class="content">
+    <h3>Share Point Location:</h3>
+    <mat-form-field class="refstyle" appearance="outline">
+      <input matInput placeholder="URL for report share point location" [(ngModel)]="report">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-action align="center">
+    <button mat-raised-button color="primary" mat-dialog-close (click)="onUpdate()" [disabled]="!report">Update</button>
+  </div>
+</div>
