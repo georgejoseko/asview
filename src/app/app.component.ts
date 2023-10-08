@@ -9,7 +9,11 @@ import { AddsyststComponent } from './addsystst/addsystst.component';
 import { AddswtstComponent } from './addswtst/addswtst.component';
 import { FileSaverService } from 'ngx-filesaver';
 import { ConfirmationComponent } from './confirm-dialog/confirm-dialog.component';
-import { Observable, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
+import { AnalysisComponent } from './analysis/analysis.component';
+import { InfoComponent } from './info-dialog/info-dialog.component';
+import { ReportComponent } from './report/report.component';
+import { ArchitectureComponent } from './architecture/architecture.component';
 
 @Component({
   selector: 'app-root',
@@ -34,10 +38,11 @@ export class AppComponent {
   ngOnInit(): void {
     this.dataString = localStorage.getItem('DATA');
     this.dataObject = JSON.parse(this.dataString);
-    this.taskId = this.dataObject.id;
-    this.titleRq = this.dataObject.title;
-    console.log(this.dataObject)
     this.taskExist = !!this.dataObject;
+    if (this.taskExist) {
+      this.taskId = this.dataObject.id;
+      this.titleRq = this.dataObject.title;
+    }
   }
   browserSaveAs() {
     this.dataString = localStorage.getItem('DATA');
@@ -220,8 +225,8 @@ export class AppComponent {
     this.ngOnInit();
   }
 
-  async getConfirmation(): Promise<boolean> {
-    return await lastValueFrom(
+  getConfirmation(): Promise<boolean> {
+    return lastValueFrom(
       this.dialog
         .open(ConfirmationComponent, {
           disableClose: true,
@@ -236,13 +241,53 @@ export class AppComponent {
 
   editTask() {
     this.dialog
-      .open(AddtaskComponent, {
-        disableClose: true,
-        data: { isEdit: true },
-      })
+      .open(AddtaskComponent, { disableClose: true, data: { isEdit: true } })
       .afterClosed()
       .subscribe((val) => {
         this.ngOnInit();
       });
+  }
+
+  onAnalysis(): void {
+    if (!this.taskExist) {
+      this.onInfo('No Task Avalable', 'Add a task before doing analysis!');
+      return;
+    }
+    this.dialog.open(AnalysisComponent, {
+      disableClose: true,
+      width: '70vw',
+      height: '70vh',
+      minWidth: '720px',
+      minHeight: '500px',
+    });
+  }
+
+  onArchitecture(): void {
+    if (!this.taskExist) {
+      this.onInfo('No Task Avalable', 'Add a task before doing analysis!');
+      return;
+    }
+    this.dialog.open(ArchitectureComponent, {
+      disableClose: true,
+      width: '70vw',
+      height: '70vh',
+      minWidth: '720px',
+      minHeight: '500px',
+    });
+  }
+
+  onReport(): void {
+    if (!this.taskExist) {
+      this.onInfo('No Task Avalable', 'Add a task before adding report!');
+      return;
+    }
+    this.dialog.open(ReportComponent, { disableClose: true });
+  }
+
+  onInfo(title: string, description: string): void {
+    this.dialog.open(InfoComponent, {
+      disableClose: true,
+      data: { title, description },
+    });
   }
 }
