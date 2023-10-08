@@ -1,0 +1,30 @@
+<div class="header">
+  <div class="heads">
+    <h1 mat-dialog-title>Analysis</h1>
+    <button mat-icon-button class="addStk" (click)="addAnalysis()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content style="overflow: hidden;">
+  <div class="table-rows">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container *ngFor="let disCol of tableColumns let colIndex = index;" matColumnDef="{{disCol.name}}"
+        [ngSwitch]="disCol.name">
+        <ng-container *ngSwitchCase="'id'">
+          <mat-header-cell class="small" *matHeaderCellDef> {{ disCol.title }} </mat-header-cell>
+          <mat-cell class="small" *matCellDef="let row"> {{ row[disCol.name] }} </mat-cell>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <mat-header-cell *matHeaderCellDef> {{ disCol.title }} </mat-header-cell>
+          <mat-cell [innerHtml]="!!row[disCol.name] ? row[disCol.name] : '--'" *matCellDef="let row"></mat-cell>
+        </ng-container>
+      </ng-container>
+
+      <mat-header-row mat-header-row class="header" *matHeaderRowDef="displayedColumns sticky:true"></mat-header-row>
+      <mat-row mat-row *matRowDef="let row; columns: displayedColumns" (click)="row.id !== '-' && onRowClick(row)"></mat-row>
+    </mat-table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="header">
+  <h1 mat-dialog-title>ID: {{analysisId}}</h1>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+<form [formGroup]="analysisForm">
+    <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput placeholder="Give the Analysis Description"></textarea>
+      </mat-form-field>
+      <mat-form-field class="normstyle" appearance="outline">
+        <mat-label>Comment</mat-label>
+        <textarea formControlName="comment" matInput placeholder="Add the Analysis Comment"></textarea>
+      </mat-form-field>
+      <mat-form-field class="statusstyle" appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">  
+          <mat-option value = "open"> Open </mat-option>  
+          <mat-option value = "close"> Close </mat-option>  
+        </mat-select> 
+      </mat-form-field>
+      <mat-form-field class="refstyle" appearance="outline">
+        <mat-label>Referance</mat-label>
+        <input formControlName="referance" matInput placeholder="List the Analysis Referance">
+      </mat-form-field>
+</form>
+</div>
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addAnalysis()" [disabled]="analysisForm.invalid">SUBMIT</button>
+</div>
