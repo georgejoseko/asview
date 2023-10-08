@@ -1,0 +1,15 @@
+<div class="header">
+  <h1 mat-dialog-title>Add {{type}}</h1>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+  <div>ID: {{addId}}</div>
+  <mat-form-field class="normstyle" appearance="outline">
+    <mat-label>{{type === 'requirement' ? 'Description' : 'Requirement'}}</mat-label>
+    <input [(ngModel)]="addData" matInput
+      [placeholder]="'Provide' + (type === 'requirement' ? 'Description' : 'Requirement')">
+  </mat-form-field>
+</div>
+<div mat-dialog-action align="end">
+  <button mat-raised-button color="primary" mat-dialog-close (click)="onSubmit()" [disabled]="!addData">SUBMIT</button>
+</div>
