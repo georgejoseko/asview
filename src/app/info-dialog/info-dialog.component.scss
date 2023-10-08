@@ -1,0 +1,9 @@
+:host {
+    ::ng-deep .mat-dialog-content {
+        height: 60px;
+        width: 300px;
+        padding-bottom: 32px;
+        display: flex;
+        align-items: center;
+    }
+}
