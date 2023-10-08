@@ -1,0 +1,36 @@
+<div class="header">
+  <h1 mat-dialog-title>Add Element</h1>
+  <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+  <form [formGroup]="elementForm">
+    <mat-form-field class="shrtstyle" appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="Interface.In.Ext"> Interface.In.Ext </mat-option>
+        <mat-option value="Interface.Out.Ext"> Interface.Out.Ext </mat-option>
+        <mat-option value="interface.In.HWE"> Interface.In.HWE </mat-option>
+        <mat-option value="interface.Out.HWE"> Interface.Out.HWE </mat-option>
+        <mat-option value="interface.In.Int"> Interface.In.Int </mat-option>
+        <mat-option value="interface.Out.Int"> Interface.Out.Int </mat-option>
+        <mat-option value="Calibration"> Calibration </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="normstyle" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Give the Element Name">
+    </mat-form-field>
+    <mat-form-field class="normstyle" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput placeholder="Give the Element Description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="shrtstyle" appearance="outline">
+      <mat-label>Value</mat-label>
+      <input formControlName="value" matInput placeholder="List the Element Value">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-action>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="addElement()"
+    [disabled]="elementForm.invalid">SUBMIT</button>
+</div>

@@ -1,0 +1,32 @@
+:host {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    ::ng-deep .mat-dialog-content{
+        height: calc(100% - 108px);
+        margin-bottom: 16px;
+    }
+
+    .import-item {
+        font-size: 16px;
+        line-height: 24px;
+        border-radius: 24px;
+        background-color: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 4px 12px;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .selected {
+        border-color: #c2185b;
+    }
+}
