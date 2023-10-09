@@ -5,6 +5,10 @@
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
+  <mat-form-field class="refstyle" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="architectureName" matInput placeholder="Add the Architecture Name" (change)="onArchitectureNameChange($event)">
+  </mat-form-field>
   <button mat-icon-button (click)="close()"><mat-icon>close</mat-icon></button>
 </div>
 <div mat-dialog-content style="overflow: hidden;">

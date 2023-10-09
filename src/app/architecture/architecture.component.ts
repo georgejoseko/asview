@@ -21,6 +21,7 @@ export class ArchitectureComponent implements OnInit {
   displayedColumns: string[];
   dataString!: string;
   dataObject: any;
+  architectureName: string = '';
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<ArchitectureComponent>
@@ -51,6 +52,7 @@ export class ArchitectureComponent implements OnInit {
       },
     };
     this.dataSource.data = Object.values(this.architecture);
+    this.architectureName = this.dataObject['architectureName']??'';
   }
 
   addArchitecture() {
@@ -67,7 +69,7 @@ export class ArchitectureComponent implements OnInit {
       });
   }
 
-  onRowClick(row: Architecture): void {
+  editArchitecture(row: Architecture): void {
     this.dialog
       .open(ArchitectureFormComponent, {
         disableClose: true,
@@ -79,7 +81,7 @@ export class ArchitectureComponent implements OnInit {
       });
   }
 
-  editArchitecture(row: Architecture): void {
+  onRowClick(row: Architecture): void {
     this.dialog.open(HierarchyComponent, {
       disableClose: true,
       width: '50vw',
@@ -104,6 +106,12 @@ export class ArchitectureComponent implements OnInit {
     this.dataString = JSON.stringify(this.dataObject);
     localStorage.setItem('DATA', this.dataString);
     this.ngOnInit();
+  }
+
+  onArchitectureNameChange(e: any): void {
+    this.dataObject['architectureName'] = this.architectureName;
+    this.dataString = JSON.stringify(this.dataObject);
+    localStorage.setItem('DATA', this.dataString);
   }
 
   getConfirmation(title: string, description: string): Promise<boolean> {

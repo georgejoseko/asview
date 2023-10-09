@@ -6,6 +6,7 @@ import { Analysis } from './types';
 import { AnalysisFormComponent } from './form/analysis-form.component';
 import { TableColumn } from '../types';
 import { Sort } from '@angular/material/sort';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-analysis',
@@ -16,27 +17,15 @@ export class AnalysisComponent implements OnInit {
   analysis!: { [id: number]: Analysis };
   dataSource = new MatTableDataSource<Analysis>([]);
   tableColumns: TableColumn[] = [
-    {
-      name: 'id',
-      title: 'ID',
-    },
-    {
-      name: 'description',
-      title: 'Description',
-    },
-    {
-      name: 'status',
-      title: 'Status',
-    },
-    {
-      name: 'comment',
-      title: 'Comment',
-    },
-    {
-      name: 'referance',
-      title: 'Referance',
-    },
+    { name: 'id', title: 'ID' },
+    { name: 'description', title: 'Description' },
+    { name: 'status', title: 'Status' },
+    { name: 'comment', title: 'Comment' },
+    { name: 'referance', title: 'Referance' },
+    { name: 'action', title: '' },
   ];
+  dataString!: string;
+  dataObject!: any;
   displayedColumns: string[];
   constructor(
     private dialog: MatDialog,
@@ -48,9 +37,9 @@ export class AnalysisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const dataString = localStorage.getItem('DATA') ?? '{}';
-    const dataObject = JSON.parse(dataString);
-    this.analysis = dataObject['analysis'] ?? {
+    this.dataString = localStorage.getItem('DATA') ?? '{}';
+    this.dataObject = JSON.parse(this.dataString);
+    this.analysis = this.dataObject['analysis'] ?? {
       0: {
         id: '-',
         description: 'No analysis avalable!',
@@ -88,19 +77,31 @@ export class AnalysisComponent implements OnInit {
       });
   }
 
-  close(): void {
-    this.dialog
-      .open(ConfirmationComponent, {
-        disableClose: true,
-        data: {
-          title: 'Confirm Close!',
-          description: `Confirm close analysis dialog?`,
-        },
-      })
-      .afterClosed()
-      .subscribe((resp) => {
-        if (!!resp) this.dialogRef.close();
-      });
+  async deleteAnalysis(row: Analysis): Promise<void> {
+    if (
+      !(await this.getConfirmation(
+        'Confirm Delete?',
+        'Confirm deleting the analysis?'
+      ))
+    )
+      return;
+    if (Object.keys(this.dataObject['analysis']).length === 1)
+      delete this.dataObject['analysis'];
+    else delete this.dataObject['analysis'][row.id];
+    this.dataString = JSON.stringify(this.dataObject);
+    localStorage.setItem('DATA', this.dataString);
+    this.ngOnInit();
+  }
+
+  getConfirmation(title: string, description: string): Promise<boolean> {
+    return lastValueFrom(
+      this.dialog
+        .open(ConfirmationComponent, {
+          disableClose: true,
+          data: { title, description },
+        })
+        .afterClosed()
+    );
   }
 
   sortData(sort: Sort) {
@@ -131,5 +132,15 @@ export class AnalysisComponent implements OnInit {
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  async close(): Promise<void> {
+    if (
+      await this.getConfirmation(
+        'Confirm Close!',
+        'Confirm close analysis dialog?'
+      )
+    )
+      this.dialogRef.close();
   }
 }

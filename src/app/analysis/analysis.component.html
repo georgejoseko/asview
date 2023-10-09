@@ -17,6 +17,20 @@
           <mat-cell class="small" *matCellDef="let row"> {{ row[disCol.name] }} </mat-cell>
         </ng-container>
 
+        <ng-container *ngSwitchCase="'action'">
+          <mat-header-cell class="small" mat-sort-header *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="small" *matCellDef="let row">
+            <ng-container *ngIf="!!row.id && row.id != '-'">
+              <button mat-icon-button class="addStk" (click)="$event.stopPropagation(); onRowClick(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button class="addStk" (click)="$event.stopPropagation(); deleteAnalysis(row)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+
         <ng-container *ngSwitchDefault>
           <mat-header-cell mat-sort-header *matHeaderCellDef> {{ disCol.title }} </mat-header-cell>
           <mat-cell [innerHtml]="!!row[disCol.name] ? row[disCol.name] : '--'" *matCellDef="let row"></mat-cell>

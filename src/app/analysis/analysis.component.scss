@@ -26,6 +26,7 @@
     }
 
     .table-rows {
+        height: 100%;
         max-height: 100%;
         overflow: auto;
 
@@ -33,6 +34,7 @@
             overflow: auto;
             display: table;
             min-width: 100%;
+            max-width: 100%;
 
             mat-header-row {
                 min-height: 32px !important;
@@ -57,7 +59,11 @@
             }
 
             mat-header-cell {
+                font-size: 20px;
+                font-weight: 300;
                 line-height: 32px;
+                flex-shrink: unset;
+                white-space: nowrap;
                 border-block: 1px solid rgba(255,255,255,.8);
             }
 
@@ -66,8 +72,6 @@
             mat-cell {
                 display: table-cell;
                 padding-left: 30px;
-                white-space: nowrap;
-                flex-shrink: unset;
                 vertical-align: middle;
                 min-height: 32px;
                 height: 32px;
