@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSortModule } from '@angular/material/sort';
+
 import { ElementFormComponent } from './element-form/element-form.component';
 import { ImportFormComponent } from './import-form/import-form.component';
 import { ConfirmationModule } from 'src/app/confirm-dialog/confirm-dialog.module';
@@ -40,6 +42,7 @@ import { AddFormComponent } from './add-form/add-form.component';
     MatTableModule,
     MatTabsModule,
     ConfirmationModule,
+    MatSortModule
   ],
 })
 export class HierarchyModule {}

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Analysis } from './types';
 import { AnalysisFormComponent } from './form/analysis-form.component';
 import { TableColumn } from '../types';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-analysis',
@@ -100,5 +101,35 @@ export class AnalysisComponent implements OnInit {
       .subscribe((resp) => {
         if (!!resp) this.dialogRef.close();
       });
+  }
+
+  sortData(sort: Sort) {
+    const data = Object.values(this.analysis);
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(a.id, b.id, isAsc);
+        case 'description':
+          return this.compare(a.description, b.description, isAsc);
+        case 'status':
+          return this.compare(a.status, b.status, isAsc);
+        case 'comment':
+          return this.compare(a.comment, b.comment, isAsc);
+        case 'referance':
+          return this.compare(a.referance, b.referance, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

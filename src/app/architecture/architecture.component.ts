@@ -7,6 +7,7 @@ import { ArchitectureFormComponent } from './form/architecture-form.component';
 import { TableColumn } from '../types';
 import { lastValueFrom, retry } from 'rxjs';
 import { HierarchyComponent } from './hierarchy/hierarchy.component';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-architecture',
@@ -114,6 +115,36 @@ export class ArchitectureComponent implements OnInit {
         })
         .afterClosed()
     );
+  }
+
+  sortData(sort: Sort) {
+    const data = Object.values(this.architecture);
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(a.id, b.id, isAsc);
+        case 'mainHierarchy':
+          return this.compare(a.mainHierarchy, b.mainHierarchy, isAsc);
+        case 'subHierarchy':
+          return this.compare(a.subHierarchy, b.subHierarchy, isAsc);
+        case 'level':
+          return this.compare(a.level, b.level, isAsc);
+        case 'comment':
+          return this.compare(a.comment, b.comment, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
   async close(): Promise<void> {

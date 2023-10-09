@@ -13,6 +13,7 @@ import { ImportFormComponent } from './import-form/import-form.component';
 import { HierarchyElement, HierarchyItem } from './types';
 import { lastValueFrom } from 'rxjs';
 import { AddFormComponent } from './add-form/add-form.component';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-hierarchy',
@@ -242,5 +243,75 @@ export class HierarchyComponent implements OnInit {
         })
         .afterClosed()
     );
+  }
+
+  sortElementData(sort: Sort) {
+    const data = Object.values(this.elements);
+    if (!sort.active || sort.direction === '') {
+      this.elementDataSource.data = data;
+      return;
+    }
+
+    this.elementDataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(a.id, b.id, isAsc);
+        case 'type':
+          return this.compare(a.type, b.type, isAsc);
+        case 'name':
+          return this.compare(a.name, b.name, isAsc);
+        case 'description':
+          return this.compare(a.description, b.description, isAsc);
+        case 'value':
+          return this.compare(a.value, b.value, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  sortRequirementData(sort: Sort) {
+    const data = Object.values(this.requirements);
+    if (!sort.active || sort.direction === '') {
+      this.requirementDataSource.data = data;
+      return;
+    }
+
+    this.requirementDataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(a.id, b.id, isAsc);
+        case 'data':
+          return this.compare(a.data, b.data, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  sortDesignData(sort: Sort) {
+    const data = Object.values(this.designs);
+    if (!sort.active || sort.direction === '') {
+      this.designDataSource.data = data;
+      return;
+    }
+
+    this.designDataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(a.id, b.id, isAsc);
+        case 'data':
+          return this.compare(a.data, b.data, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

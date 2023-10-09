@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSortModule } from '@angular/material/sort';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -67,8 +68,9 @@ import { ConfirmationModule } from './confirm-dialog/confirm-dialog.module';
     FileSaverModule,
     MatTableModule,
     MatTabsModule,
+    MatSortModule,
     HierarchyModule,
-    ConfirmationModule
+    ConfirmationModule,
   ],
   bootstrap: [AppComponent],
 })
