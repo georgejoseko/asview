@@ -9,10 +9,24 @@ mat-form-field {
         align-items: center;
         margin-bottom: 16px;
 
-        .heads{
+        .heads {
             display: flex;
             gap: 12px;
             align-items: center;
+        }
+
+        .namestyle {
+            width: 240px;
+
+            ::ng-deep {
+                .mat-form-field-wrapper {
+                    padding: 0%;
+                }
+
+                .mat-form-field-infix {
+                    border-width: 4px;
+                }
+            }
         }
 
         h1 {
@@ -21,8 +35,8 @@ mat-form-field {
     }
 
     ::ng-deep .mat-dialog-content {
-        height: calc(100% - 56px);
-        max-height: calc(100% - 56px);
+        height: calc(100% - 72px);
+        max-height: calc(100% - 72px);
     }
 
     .table-rows {
@@ -64,7 +78,7 @@ mat-form-field {
                 line-height: 32px;
                 flex-shrink: unset;
                 white-space: nowrap;
-                border-block: 1px solid rgba(255,255,255,.8);
+                border-block: 1px solid rgba(255, 255, 255, .8);
             }
 
 
